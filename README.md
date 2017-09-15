@@ -3,7 +3,7 @@
 Repository for HW assignments of Stat 133 (Fall 2017)
 
 - Student name: Eric Win
-- Github username: usrname
+- Github username: ericw67
 - Lab section: 107
 - GSI: Minchul Shin
 
