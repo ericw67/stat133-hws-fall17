@@ -1,0 +1,68 @@
+---
+title: "Warmup2"
+output: github_document
+---
+
+```{r}
+load("nba2017-salary-points.RData")
+```
+
+```{r}
+summary(points)
+mean(points)
+```
+
+```{r}
+summary(experience)
+```
+```{r}
+mean(salary)
+sd(salary)
+min(salary)
+max(salary)
+median(salary)
+quantile(salary)
+```
+
+```{r}
+hist(salary)
+boxplot(salary)
+```
+```{r}
+is.factor(position)
+position_factor <- factor(position)
+frequencies <- table(position_factor) / 441
+barplot(frequencies)
+```
+
+```{r}
+C_salary <- salary[position == 'C']
+PF_salary <- salary[position == 'PF']
+PG_salary <- salary[position == 'PG']
+SF_salary <- salary[position == 'SF']
+SG_salary <- salary[position == 'SG']
+```
+
+```{r}
+hist(C_salary)
+hist(PF_salary)
+hist(PF_salary)
+hist(SF_salary)
+hist(SG_salary)
+```
+```{r}
+median(C_salary)
+median(PF_salary)
+median(PG_salary)
+median(SF_salary)
+median(SG_salary)
+```
+
+```{r}
+max(C_salary)
+max(PF_salary)
+max(PG_salary)
+max(SF_salary)
+max(SG_salary)
+```
+
