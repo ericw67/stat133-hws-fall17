@@ -180,6 +180,7 @@ lines(lowess(new_experience, new_salary), col = "blue", lwd = 2)
 ```
 
 ```{r}
+require(scatterplot3d)
 scatterplot3d(points, new_experience, new_salary, color = "red", xlab = "points", zlab = "salary", ylab = "experience", main = "3D Scatterplot")
 #On this scatterplot, it is harder to identify the depth of the z axis, but of the few data points I can analyze, experience does not seem to have a strong relation with salary.
 ```
