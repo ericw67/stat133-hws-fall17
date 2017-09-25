@@ -1,0 +1,195 @@
+---
+title: "hw01"
+output: github_document
+---
+
+```{r}
+load("data/nba2017-salary-points.RData")
+```
+
+```{r}
+ls()
+```
+
+the more points a player scores, the higher his salary?
+
+#1) 
+```{r}
+new_salary <- round(salary / 1000000, digits = 2)
+new_salary
+```
+
+```{r}
+new_experience <- gsub("R", 0, experience)
+new_experience <- as.integer(new_experience)
+new_experience
+```
+
+```{r}
+new_position <- gsub('C', 'center', position)
+new_position <- gsub('SF', 'small_fwd', new_position)
+new_position <- gsub('PF', 'power_fwd', new_position)
+new_position <- gsub('SG', 'shoot_guard', new_position)
+new_position <- gsub('PG', 'point_guard', new_position)
+new_position <- factor(new_position)
+new_position
+table(new_position)
+```
+
+#2)
+```{r}
+plot(points, new_salary, pch = ".", col = 20, cex = 1.5, xlab = "Number of Points", ylab = "Salary in Millions of Dollars", main = "Scatter of the Number of Points and Salaries of Players")
+#?pch
+# This scatter plot of points and salary in millions of dollars displays a positive and slightly strong association between the two variables. The data is mostly concentrated within the 0 to 500 point range and more scattered the more points the players make.
+```
+
+
+#3)
+```{r}
+n <- length(player)
+n
+```
+
+```{r}
+x_mean <- sum(points) / n
+x_mean
+```
+
+```{r}
+y_mean <- sum(new_salary) / n
+y_mean
+```
+
+```{r}
+x_var <- sum((points - x_mean)^2) * (1 / (n - 1))
+x_var
+```
+
+```{r}
+y_var <- sum((new_salary - y_mean)^2) * (1 / (n - 1))
+y_var
+```
+
+```{r}
+std_x <- sqrt(x_var)
+std_x
+```
+
+```{r}
+std_y <- sqrt(y_var)
+std_y
+```
+
+```{r}
+cov_xy <- sum((points - x_mean) * (new_salary - y_mean)) * (1 / (n - 1))
+cov_xy
+```
+
+```{r}
+corr_xy <- cov_xy / (std_x * std_y)
+corr_xy
+```
+
+#4)
+```{r}
+b_one <- corr_xy * (std_y / std_x)
+b_zero <- y_mean - (b_one * x_mean)
+Y <- b_zero + b_one * points
+summary(Y)
+```
+### Regression Equation
+$\widehat{Y} = b_{0} + b_{1}X$
+$b_{1} = cor(X,Y) * \frac{sd(Y)}{sd(X)}$
+$b_{0} =  \bar{y} - b_{1}\bar{x}$
+
+```{r}
+b_one
+#For every point that a player scores, the salary that they receive, according to the regression equation, goes up by $8557.567
+```
+
+```{r}
+b_zero
+#According to the regression equation, for a player that scores 0 points, he will earn $1,509,077.
+```
+
+```{r}
+zero_points <- b_zero + b_one * 0
+#Player scoring 0 points earns $1,509,077 million.
+zero_points
+```
+
+```{r}
+hundred_points <- b_zero + b_one * 100
+#Player scoring 100 points earns $2,364,833 million.
+hundred_points
+```
+
+```{r}
+five_hundred_points <- b_zero + b_one * 500
+#Player scoring 500 points earns $5,787,860 million.
+five_hundred_points
+```
+
+```{r}
+thousand_points <- b_zero + b_one * 1000
+#Player scoring 1000 points earns $10,066,640 million.
+thousand_points
+```
+
+```{r}
+two_thousand_points <- b_zero + b_one * 2000
+#Player scoring 2000 points earns $18,624,210 million.
+two_thousand_points
+```
+
+#5)
+```{r}
+plot(points, new_salary, pch = ".", col = 20, cex = 1.5, xlab = "Number of Points", ylab = "Salary in Millions of Dollars", main = "Scatter of the Number of Points and Salaries of Players")
+abline(a = b_zero, b = b_one, lwd = 2, col = "red")
+lines(lowess(x = points, y = new_salary), col = "blue", lwd = 2)
+text(2200, 15, labels = "regression", col = "red")
+text(2200, 30, labels = "lowess", col = "blue")
+```
+
+#6)
+```{r}
+residuals <- new_salary - Y
+summary(residuals)
+```
+
+```{r}
+RSS <- sum((new_salary - Y)^2)
+RSS
+```
+
+```{r}
+TSS <- sum((new_salary - y_mean)^2)
+TSS
+```
+
+```{r}
+R_squared <- 1 - RSS / TSS
+R_squared
+```
+
+#7)
+```{r}
+plot(new_experience, new_salary, pch = 20, col = "grey", cex = .5, xlab = "Years of Experience", ylab = "Salary in Millions of Dollars", main = "Scatterplot with lowess smooth")
+lines(lowess(new_experience, new_salary), col = "blue", lwd = 2)
+#Experience does not appear to be strongly related to salary. Although salary does increase initially as years of experience increases, this slight change is only seen when players first start playing. After around 8 years of playing, each additional year shows a decrease in salary earned by players.
+```
+
+```{r}
+scatterplot3d(points, new_experience, new_salary, color = "red", xlab = "points", zlab = "salary", ylab = "experience", main = "3D Scatterplot")
+#On this scatterplot, it is harder to identify the depth of the z axis, but of the few data points I can analyze, experience does not seem to have a strong relation with salary.
+```
+
+```{r}
+boxplot(new_salary ~ new_position, xlab = "Position", ylab = "Salary in Millions of Dollars", main = "Boxplot of Position and Salary")
+#This boxplot does seem to show that Center positions tend to have a salary range that extends to around $26 million, whereas in other positions, salaries that high are regarded as outliers and possibly unlikely. However, it is worth mentioning that salaries for Center players vary quite a bit and that being a Center player does not guarantee a high paying salary. Next, it seems that small forwards have a potential to be the second highest paying position, while shooting guard, power forward, and point guard hover around the same pay range.
+```
+
+```{r}
+#Overall, this homework assignment was manageable and gave a brief test of basic statisical analysis. However, some parts in the homework required some research on some functions, which took some time to figure out. More emphasis on learning these commands in lecture may help with being able to apply concepts to assignements. 
+```
+
