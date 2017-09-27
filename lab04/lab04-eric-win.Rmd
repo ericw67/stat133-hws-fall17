@@ -657,13 +657,11 @@ transform(gsw, weight = sort(gsw[, 'weight'], decreasing = TRUE))
 
 - Display the player name, team, and salary, of the top 5 highest-paid players (hint: see `?sort` and `?order`)
 ```{r}
-(transform(dat, salary = sort(dat[, 'salary'], decreasing = FALSE)))
+head(transform(dat, salary = sort(dat[, 'salary'], decreasing = FALSE)))
 ```
 
 - Display the player name, team, and points3, of the top 10 three-point players (hint: see `?sort` and `?order`)
-```{r}
 
-```
 
 
 ## Group By
