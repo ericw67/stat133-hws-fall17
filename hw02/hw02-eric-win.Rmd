@@ -1,0 +1,133 @@
+---
+title: "hw02"
+output: github_document
+---
+
+2)
+```{r}
+nba <- read.csv('data/nba2017-player-statistics.csv', stringsAsFactors = FALSE)
+nba <- transform(nba, Position = factor(Position), Salary = as.double(Salary))
+str(nba)
+```
+```{r}
+require(readr)
+nba2 <- data.frame(read_csv('data/nba2017-player-statistics.csv'))
+nba2 <- transform(nba2, Position = factor(Position))
+str(nba2)
+```
+
+3)
+```{r}
+nba <- transform(nba, Experience = gsub("R", 0, nba[ , 'Experience']))
+nba
+```
+
+4)
+```{r}
+#Adding variables to data frame
+Missed_FG <- nba[, 'FGA'] - nba[, 'FGM']
+Missed_FT <- nba[, 'FTA'] - nba[, 'FTM']
+PTS <- nba[, "Points3"] * 3 + nba[, "Points2"] * 2 + nba[, "FTM"]
+REB <- nba[, "OREB"] + nba[, "DREB"]
+MPG <- nba[, "MIN"] / nba[, "GP"] 
+nba <- cbind(nba, Missed_FG, Missed_FT, PTS, REB, MPG)
+nba
+```
+```{r}
+EFF <- (nba[, "PTS"] + nba[, "REB"] + nba[, "AST"] + nba[, "STL"] + nba[, "BLK"] - nba[, "Missed_FG"] - nba[, "Missed_FT"] - nba[, "TO"]) / nba[, "GP"]
+nba <- cbind(nba, EFF)
+nba
+summary(nba[, "EFF"])
+hist(nba[, "EFF"], main = "Histogram of Efficiency (EFF)", xlab = "EFF", col = "gray")
+```
+
+```{r}
+#top 10 players by EFF
+sorted_EFF <- nba[order(-nba[, "EFF"]), ]
+top_ten_EFF <- head(sorted_EFF, 10)
+top_ten_EFF[, c("Player", "Team", "Salary", "EFF")]
+```
+```{r}
+#Players with negative EFF
+sorted_EFF[sorted_EFF[, "EFF"] < 0, "Player"]
+```
+
+```{r}
+#Correlation coefficients between EFF and all variables in EFF formula
+EFF_PTS <- cor(nba[, "EFF"], nba[, "PTS"])
+EFF_PTS
+```
+
+```{r}
+EFF_REB <- cor(nba[, "EFF"], nba[, "REB"])
+EFF_REB
+```
+
+```{r}
+EFF_AST <- cor(nba[, "EFF"], nba[, "AST"])
+EFF_AST
+```
+
+```{r}
+EFF_STL <- cor(nba[, "EFF"], nba[, "STL"])
+EFF_STL
+```
+
+```{r}
+EFF_BLK <- cor(nba[, "EFF"], nba[, "BLK"])
+EFF_BLK
+```
+
+```{r}
+EFF_Missed_FG <- cor(nba[, "EFF"], -nba[, "Missed_FG"])
+EFF_Missed_FG
+```
+
+```{r}
+EFF_Missed_FT <- cor(nba[, "EFF"], -nba[, "Missed_FT"])
+EFF_Missed_FT
+```
+
+```{r}
+EFF_TO <- cor(nba[, "EFF"], -nba[, "TO"])
+EFF_TO
+```
+
+```{r}
+EFF_GP <- cor(nba[, "EFF"], nba[, "GP"])
+EFF_GP
+```
+
+```{r}
+barplot(c(EFF_PTS, EFF_REB, EFF_AST, EFF_STL, EFF_BLK, EFF_Missed_FG, EFF_Missed_FT, EFF_TO), main = "Correlations between Player Stats and EFF", names.arg = c("PTS", "REB", "AST", "STL", "BLK", "Missed_FG", "Missed_FT", "TO"), cex.names = 0.6, ylim = c(-1, 1))
+```
+
+5)
+```{r}
+plot(nba[, "EFF"], nba[, "Salary"], ylab = "Salary", xlab = "Efficiency")
+lines(lowess(nba[, "EFF"], nba[, "Salary"]), col = "blue", lwd = 2)
+text(32, 20000000, labels = "lowess", col = "blue")
+```
+
+```{r}
+SAL_EFF_corr <- cor(nba[, "EFF"], nba[, "Salary"])
+SAL_EFF_corr
+```
+With a correlation of 0.655624, there is a strong positive linear relationship between Efficiency and Salary. The scatter plot also shows a positive relationship.
+```{r}
+players2 <- subset(nba, MPG >= 20)
+players2
+```
+
+```{r}
+plot(players2[, "EFF"], players2[, "Salary"], xlab = "Efficiency", ylab = "Salary")
+lines(lowess(players2[, "EFF"], players2[, "Salary"]), col = "blue", lwd = 2)
+text(32, 20000000, labels = "lowess", col = "blue")
+```
+
+```{r}
+cor(players2[, "EFF"], players2[, "Salary"])
+```
+This correlation coefficient shows that there is a positive linear relationship between efficiency and salary of the more experienced players. However, it shows a lower correlation coefficient meaning that more experienced players' efficiency and salary don't have as strong a relationship than all the players' relationship between the two variables. Also, the scatter plot shows a positive and linear relationship.
+
+
