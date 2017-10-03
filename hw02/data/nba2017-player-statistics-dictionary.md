@@ -4,7 +4,7 @@
 
 2) There are 441 rows.
 
-3) There are 20 columns.
+3) There are 24 columns.
 
 4) These are the column labels: Player, Team, Position, Experience, Salary, Rank, Age, GP, GS, MIN, FGM, FGA, Points3, Points3_atts, Points2, Points2_atts, FTM, FTA, OREB, DREB, AST STL, BLK, TO
 
