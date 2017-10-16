@@ -1,0 +1,131 @@
+---
+title: "hw03"
+output: github_document
+---
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+roster <- read_csv("../data/nba2017-roster.csv", col_types = cols(
+                  position = col_factor(c("C", "PG", "SF", "PF", "SG"))))
+stats <- read_csv("../data/nba2017-stats.csv")
+
+stats <- mutate(stats, 
+       missed_fg = field_goals_atts - field_goals_made,
+       missed_ft = points1_atts - points1_made, 
+       points = 3*points3_made + 2*points2_made + points1_made,
+       rebounds = off_rebounds + def_rebounds,
+       efficiency = (points + rebounds + assists + steals +
+                    blocks - missed_fg - missed_ft - 
+                    turnovers) / games_played)
+
+teams <- roster %>% 
+  merge(stats)
+
+teams$salary <- round(teams$salary / 1000000, 2)
+teams <- teams %>% 
+  group_by(team) %>%
+  summarise(experience = sum(experience),
+            salary = sum(salary),
+            points3 = sum(points3_made),
+            points2 = sum(points2_made),
+            free_throws = sum(points1_made),
+            points = sum(points),
+            off_rebounds = sum(off_rebounds),
+            def_rebounds = sum(def_rebounds),
+            assists = sum(assists),
+            steals = sum(steals),
+            blocks = sum(blocks),
+            turnovers = sum(turnovers),
+            fouls = sum(fouls),
+            efficiency = sum(efficiency))
+```
+
+
+```{r}
+sorted_salary <- arrange(teams, desc(salary))
+sorted_salary
+```
+
+```{r}
+ggplot(sorted_salary, aes(x = reorder(team, c(30:1)), y = salary)) +
+  geom_bar(stat='identity') +
+  coord_flip() + labs(x = "Team", y = "Salary (in millions)") +
+  geom_hline(aes(yintercept = mean(sorted_salary$salary), color = "red")) +
+  ggtitle("NBA Teams ranked by Total Salary") + theme(legend.position = "none")
+```
+
+```{r}
+sorted_points <- teams %>%
+  arrange(desc(points))
+sorted_points
+```
+
+```{r}
+ggplot(sorted_points, aes(x = reorder(team, c(30:1)), y = points)) +
+  geom_bar(stat='identity') +
+  coord_flip() + labs(x = "Team", y = "Total Points") +
+  geom_hline(aes(yintercept = mean(sorted_points$points), color = "red")) +
+  ggtitle("NBA Teams ranked by Total Points") + theme(legend.position = "none")
+```
+
+```{r}
+sorted_eff <- teams %>%
+  arrange(desc(efficiency))
+sorted_eff
+```
+
+```{r}
+ggplot(sorted_eff, aes(x = reorder(team, c(30:1)), y = efficiency)) +
+  geom_bar(stat='identity') +
+  coord_flip() + labs(x = "Team", y = "Total Efficiency") +
+  geom_hline(aes(yintercept = mean(sorted_eff$efficiency), color = "red")) +
+  ggtitle("NBA Teams ranked by Total Efficiency") + theme(legend.position = "none")
+```
+
+```{r}
+# CLE, LAC, TOR seem to be the highest paying teams, while MIN, PHI, and BRK are the lowest.
+# GSW, LAC, BOS seem to score the most points, while DAL, NOP, and SAC score the lowest.
+# CLE, GSW, and DEN seem to have the top three efficiency values, while DET, IND, and ORL have the lowest. 
+```
+
+```{r}
+variable <- teams %>%
+  select(points3, points2, free_throws, off_rebounds, def_rebounds, assists, steals, blocks, turnovers, fouls)
+PCA <- prcomp(variable, scale. = TRUE)
+eigenvalues <- data.frame(eigenvalue = round(PCA$sdev^2, 4), prop = round(PCA$sdev^2 / sum(PCA$sdev^2), 4), cumprop = c(0.4696, 0.6398, 0.7377, 0.8149, 0.8683, 0.9161, 0.9543, 0.9804, 0.9937, 1.0000))
+eigenvalues
+PCA
+```
+
+
+```{r}
+PC1 <- PCA$x[, "PC1"]
+PC2 <- PCA$x[, "PC2"]
+df_PC1_2 <- data.frame(teams %>% select(team), PC1, PC2)
+ggplot(df_PC1_2, aes(x = PC1, y = PC2)) + geom_text(aes(label = team))
+```
+
+
+
+
+
+```{r}
+scaled_PC1 <- 100 * (PC1 - min(PC1)) / (max(PC1) - min(PC1))
+df_scaled <- data.frame(team = teams$team, scaled_PC1 = scaled_PC1)
+df_scaled <- df_scaled %>% arrange(desc(scaled_PC1))
+df_scaled
+```
+
+```{r}
+ggplot(df_scaled, aes(x = reorder(team, c(30:1)), y = scaled_PC1)) +
+  geom_bar(stat='identity') +
+  coord_flip() + labs(x = "Team", y = "First PC (scaled from 0 to 100)") +
+  ggtitle("NBA Teams ranked by scaled PC1")
+```
+
+```{r}
+# It seems the GSW by far have the highest PC1 index with MIN having the second highest. SAC on the other hand has the lowest PC1 index. DAL and NOP also have noticeably low PC1 indexes.
+```
+
