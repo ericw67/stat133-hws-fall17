@@ -22,4 +22,4 @@ Modify the content of this file.
 library(shiny)
 
 # Run app from subdirectory in the repo
-runGitHub("stat133-hws-fall17", "ewin67", subdir = "hw04/app")
+runGitHub("stat133-hws-fall17", "ericw67", subdir = "hw04/app")
