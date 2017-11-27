@@ -1,0 +1,315 @@
+
+> test_file('./stat133/stat133-hws-fall17/hw04/code/tests.R')
+Error in install.packages : Updating loaded packages
+................................................12345....................
+Failed ----------------------------------------------------------------------------------------------------
+1. Failure: summary_stats works (@tests.R#148) ------------------------------------------------------------
+summary_stats(vec, na.rm = TRUE) not equal to c(5.25).
+Modes: list, numeric
+Component 1: Modes: list, numeric
+Component 1: names for target but not for current
+Component 1: Length mismatch: comparison on first 1 components
+Component 1: Component 1: Mean relative difference: 4.25
+
+
+2. Failure: summary_stats works (@tests.R#149) ------------------------------------------------------------
+summary_stats(vec1,
+> # ================================================================
+> # title: tests
+> # description: assessing the accurancy of the created function .... [TRUNCATED] 
+Error in install.packages : Updating loaded packages
+
+> library(testthat)
+
+> test_that("remove_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   exp .... [TRUNCATED] 
+
+> test_that("get_minimum works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect .... [TRUNCATED] 
+
+> test_that("get_maximum works",{
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_ .... [TRUNCATED] 
+
+> test_that("get_range works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_e .... [TRUNCATED] 
+
+> test_that("get_percentile10 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_percentile90 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_quartile1 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_quartile3 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_median works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec4 <- c(8,15,17,3)
++   exp .... [TRUNCATED] 
+
+> test_that("get_average works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   ex .... [TRUNCATED] 
+
+> test_that("get_stdev works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   expe .... [TRUNCATED] 
+
+> test_that("count_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 
+
+> test_that("summary_stats works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 
+
+The downloaded binary packages are in
+	/var/folders/bw/spq79yl97v762ptcds9jd6y00000gn/T//RtmpytZCKb/downloaded_packages
+
+> # ================================================================
+> # title: tests
+> # description: assessing the accurancy of the created function .... [TRUNCATED] 
+Error in install.packages : Updating loaded packages
+
+> library(testthat)
+
+> test_that("remove_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   exp .... [TRUNCATED] 
+
+> test_that("get_minimum works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect .... [TRUNCATED] 
+
+> test_that("get_maximum works",{
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_ .... [TRUNCATED] 
+
+> test_that("get_range works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_e .... [TRUNCATED] 
+
+> test_that("get_percentile10 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_percentile90 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_quartile1 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_quartile3 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_median works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec4 <- c(8,15,17,3)
++   exp .... [TRUNCATED] 
+
+> test_that("get_average works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   ex .... [TRUNCATED] 
+
+> test_that("get_stdev works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   expe .... [TRUNCATED] 
+
+> test_that("count_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 
+
+> test_that("summary_stats works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 
+
+The downloaded binary packages are in
+	/var/folders/bw/spq79yl97v762ptcds9jd6y00000gn/T//RtmpytZCKb/downloaded_packages
+
+> # ================================================================
+> # title: tests
+> # description: assessing the accurancy of the created function .... [TRUNCATED] 
+Error in install.packages : Updating loaded packages
+
+> library(testthat)
+
+> test_that("remove_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   exp .... [TRUNCATED] 
+
+> test_that("get_minimum works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect .... [TRUNCATED] 
+
+> test_that("get_maximum works",{
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_ .... [TRUNCATED] 
+
+> test_that("get_range works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expect_e .... [TRUNCATED] 
+
+> test_that("get_percentile10 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_percentile90 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   e .... [TRUNCATED] 
+
+> test_that("get_quartile1 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_quartile3 works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec3 <- c(NA, 5)
++   expe .... [TRUNCATED] 
+
+> test_that("get_median works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec2 <- c(1,2,3,4,5,NA,NA)
++   vec4 <- c(8,15,17,3)
++   exp .... [TRUNCATED] 
+
+> test_that("get_average works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   ex .... [TRUNCATED] 
+
+> test_that("get_stdev works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++   expe .... [TRUNCATED] 
+
+> test_that("count_missing works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 
+
+> test_that("summary_stats works", {
++   vec <- c(1,3,7,NA,10)
++   vec1 <- c(10,NA,7,3,1)
++   vec5 <- c(NA,6,32,2,13,NA)
++   vec4 <- c(8,15,17,3)
++    .... [TRUNCATED] 

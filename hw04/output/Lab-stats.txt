@@ -1,0 +1,40 @@
+
+> summary_stats(clean_scores$Lab)
+[[1]]
+[[1]]$minimum
+[1] 0
+
+[[1]]$percent10
+[1] 80
+
+[[1]]$quartile1
+[1] 100
+
+[[1]]$median
+[1] 100
+
+[[1]]$mean
+[1] 93.53293
+
+[[1]]$quartile3
+[1] 100
+
+[[1]]$percent90
+[1] 100
+
+[[1]]$maximum
+[1] 100
+
+[[1]]$range
+[1] 100
+
+[[1]]$stdev
+[1] 19.45435
+
+[[1]]$missing
+[1] 0
+
+
+
+> #print_stats(clean_scores)
+> sink()
